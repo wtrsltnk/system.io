@@ -36,6 +36,9 @@ public:
 #define SYSTEM_IO_PATH_IMPLEMENTATION
 #include "system.io.path.h"
 
+#define SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTATION
+#include "system.io.filesysteminfo.h"
+
 using namespace System::IO;
 
 DirectoryInfo::DirectoryInfo(const std::string& path)
