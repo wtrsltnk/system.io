@@ -33,6 +33,9 @@ public:
 
 #ifdef SYSTEM_IO_PATH_IMPLEMENTATION
 
+#ifndef _SYSTEM_IO_PATH_IMPLEMENTED_
+#define _SYSTEM_IO_PATH_IMPLEMENTED_
+
 #include <sstream>
 #include <algorithm>
 
@@ -250,4 +253,5 @@ bool Path::IsPathRooted(const std::string& path)
     return false;
 }
 
+#endif // _SYSTEM_IO_PATH_IMPLEMENTED_
 #endif // SYSTEM_IO_PATH_IMPLEMENTATION

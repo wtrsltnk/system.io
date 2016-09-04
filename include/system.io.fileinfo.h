@@ -30,6 +30,10 @@ public:
 
 #ifdef SYSTEM_IO_FILEINFO_IMPLEMENTATION
 
+#ifndef _SYSTEM_IO_FILEINFO_IMPLEMENTED_
+#define _SYSTEM_IO_FILEINFO_IMPLEMENTED_
+
+#define SYSTEM_IO_PATH_IMPLEMENTATION
 #include "system.io.path.h"
 
 using namespace System::IO;
@@ -59,4 +63,5 @@ DirectoryInfo FileInfo::Directory()
     return DirectoryInfo(Path::GetDirectoryName(this->_fullPath));
 }
 
+#endif // _SYSTEM_IO_FILEINFO_IMPLEMENTED_
 #endif // SYSTEM_IO_FILEINFO_IMPLEMENTATION

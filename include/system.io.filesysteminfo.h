@@ -31,6 +31,12 @@ public:
 
 #ifdef SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTATION
 
+#ifndef _SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTED_
+#define _SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTED_
+
+#define SYSTEM_IO_PATH_IMPLEMENTATION
+#include "system.io.path.h"
+
 using namespace System::IO;
 
 FileSystemInfo::FileSystemInfo()
@@ -56,4 +62,5 @@ std::string FileSystemInfo::Extension()
     return "";
 }
 
+#endif // _SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTED_
 #endif // SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTATION

@@ -1,5 +1,5 @@
 
-#include "catch.hpp"
+#include "../src/catch.hpp"
 
 #include "system.io.fileinfo.h"
 

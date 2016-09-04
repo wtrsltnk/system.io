@@ -14,7 +14,7 @@ set(HEADERS
     include/system.io.fileinfo.h
     include/system.io.filesysteminfo.h
     include/system.io.path.h
-    include/catch.hpp
+    src/catch.hpp
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
