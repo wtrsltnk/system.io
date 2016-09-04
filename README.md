@@ -11,31 +11,56 @@ These sources contain the header files in the include directory and a set of tes
 ## Example
 Here you find a few examples from tests cases which illustrate how these classes work now:
 
-### Example #1
+### Example #1 Path & FileInfo
 ```c++
 auto file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"));
 cout << file.FullName();
 ```
 this will result in `c:\temp\subdir\myfile.ext`
 
-### Example #2
+### Example #2 FileInfo
 ```c++
 auto file = FileInfo("c:\\temp\\..\\subdir\\.\\myfile.ext");
 cout << file.FullName();
 ```
 this will result in `c:\subdir\myfile.ext`
 
-### Example #3
+### Example #3 FileInfo
 ```c++
 auto file = FileInfo("c:\\temp/subdir\\myfile.ext");
 cout << file.FullName();
 ```
 this will result in `c:\temp\subdir\myfile.ext`
 
-### Example #4
+### Example #4 FileInfo
 ```c++
 auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
 auto directory = file.Directory();
 cout << directory.FullName();
 ```
 this will result in `c:\temp\subdir`
+
+More examples can be found in the tests for [FileInfo](https://github.com/wtrsltnk/system.io/blob/master/tests/test-fileinfo.cpp).
+
+
+### Example #5 Path
+```c++
+cout << Path::Combine("c:\\temp", "subdir\\file.txt");
+```
+this will result in `c:\temp\subdir\file.txt`
+
+### Example #6 Path
+```c++
+cout << Path::Combine("c:\\temp", "c:\\temp.txt");
+```
+this will result in `c:\temp.txt`
+
+### Example #7 Path
+```c++
+cout << Path::Combine("", "subdir\\file.txt");
+```
+this will result in `subdir\file.txt`
+
+More examples can be found in the tests for [Path](https://github.com/wtrsltnk/system.io/blob/master/tests/test-path.cpp).
+
+
