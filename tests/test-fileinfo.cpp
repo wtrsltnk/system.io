@@ -8,44 +8,52 @@ using namespace System::IO;
 
 TEST_CASE("FileInfo")
 {
-    auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
     SECTION("Fullname()")
     {
+        auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
-    }
-    SECTION("Directory()")
-    {
-        auto directory = file.Directory();
-        REQUIRE(directory.FullName() == "c:\\temp\\subdir");
     }
     SECTION("Extention()")
     {
+        auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
         REQUIRE(file.Extension() == ".ext");
     }
     SECTION("Name()")
     {
+        auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
         REQUIRE(file.Name() == "myfile.ext");
     }
     SECTION("FullName()")
     {
+        auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
+        REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
+    }
+}
+
+TEST_CASE("FileInfo - Examples from readme")
+{
+    SECTION("Example #1")
+    {
+        auto file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"));
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
     }
 
-    SECTION("FullName() with .. and . in the path")
+    SECTION("Example #2")
     {
-        file = FileInfo("c:\\temp\\..\\subdir\\.\\myfile.ext");
+        auto file = FileInfo("c:\\temp\\..\\subdir\\.\\myfile.ext");
         REQUIRE(file.FullName() == "c:\\subdir\\myfile.ext");
     }
 
-    SECTION("FullName() with alternative directory seperators")
+    SECTION("Example #3")
     {
-        file = FileInfo("c:\\temp/subdir\\myfile.ext");
+        auto file = FileInfo("c:\\temp/subdir\\myfile.ext");
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
     }
 
-    SECTION("Example from readme")
+    SECTION("Example #4")
     {
-        file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"));
-        REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
+        auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
+        auto directory = file.Directory();
+        REQUIRE(directory.FullName() == "c:\\temp\\subdir");
     }
 }

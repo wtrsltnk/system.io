@@ -10,7 +10,32 @@ These sources contain the header files in the include directory and a set of tes
 
 ## Example
 Here you find a few examples from tests cases which illustrate how these classes work now:
+
+### Example #1
 ```c++
-file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"))
+auto file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"));
+cout << file.FullName();
 ```
 this will result in `c:\temp\subdir\myfile.ext`
+
+### Example #2
+```c++
+auto file = FileInfo("c:\\temp\\..\\subdir\\.\\myfile.ext");
+cout << file.FullName();
+```
+this will result in `c:\subdir\myfile.ext`
+
+### Example #3
+```c++
+auto file = FileInfo("c:\\temp/subdir\\myfile.ext");
+cout << file.FullName();
+```
+this will result in `c:\temp\subdir\myfile.ext`
+
+### Example #4
+```c++
+auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
+auto directory = file.Directory();
+cout << directory.FullName();
+```
+this will result in `c:\temp\subdir`
