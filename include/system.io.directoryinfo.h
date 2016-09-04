@@ -2,6 +2,7 @@
 #define _SYSTEM_IO_DIRECTORYINFO_H_
 
 #include <string>
+#include <vector>
 #include "system.io.filesysteminfo.h"
 
 namespace System
@@ -20,7 +21,8 @@ public:
     DirectoryInfo Parent();
     std::string Name();
 
-    bool Exists();
+    std::vector<std::string> GetFiles();
+    std::vector<std::string> GetFiles(const std::string& searchPattern);
 };
 
 } // namespace IO
@@ -64,6 +66,18 @@ DirectoryInfo DirectoryInfo::Parent()
 std::string DirectoryInfo::Name()
 {
     return Path::GetFileName(this->_fullPath);
+}
+
+std::vector<std::string> DirectoryInfo::GetFiles()
+{
+    std::vector<std::string> files;
+    return files;
+}
+
+std::vector<std::string> DirectoryInfo::GetFiles(const std::string& searchPattern)
+{
+    std::vector<std::string> files;
+    return files;
 }
 
 #endif // _SYSTEM_IO_DIRECTORYINFO_IMPLEMENTED_
