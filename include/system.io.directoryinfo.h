@@ -21,6 +21,8 @@ public:
     DirectoryInfo Parent();
     std::string Name();
 
+    std::vector<std::string> GetDirectories();
+    std::vector<std::string> GetDirectories(const std::string& searchPattern);
     std::vector<std::string> GetFiles();
     std::vector<std::string> GetFiles(const std::string& searchPattern);
 };
@@ -68,15 +70,72 @@ std::string DirectoryInfo::Name()
     return Path::GetFileName(this->_fullPath);
 }
 
-std::vector<std::string> DirectoryInfo::GetFiles()
+std::vector<std::string> DirectoryInfo::GetDirectories()
+{
+    return this->GetDirectories("*");
+}
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+std::vector<std::string> DirectoryInfo::GetDirectories(const std::string& searchPattern)
 {
     std::vector<std::string> files;
+
+#ifdef _WIN32
+    HANDLE hFind;
+    WIN32_FIND_DATA data;
+
+    hFind = FindFirstFile(Path::Combine(this->FullName(), searchPattern).c_str(), &data);
+    if (hFind != INVALID_HANDLE_VALUE)
+    {
+        do
+        {
+            if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+            {
+                auto dir = DirectoryInfo(Path::Combine(this->FullName(), data.cFileName));
+                files.push_back(dir.FullName());
+            }
+        }
+        while (FindNextFile(hFind, &data));
+        FindClose(hFind);
+    }
+#endif
+
     return files;
+}
+
+std::vector<std::string> DirectoryInfo::GetFiles()
+{
+    return this->GetFiles("*");
 }
 
 std::vector<std::string> DirectoryInfo::GetFiles(const std::string& searchPattern)
 {
     std::vector<std::string> files;
+
+#ifdef _WIN32
+    HANDLE hFind;
+    WIN32_FIND_DATA data;
+
+    auto tmp = Path::Combine(this->FullName(), searchPattern);
+    hFind = FindFirstFile(tmp.c_str(), &data);
+    if (hFind != INVALID_HANDLE_VALUE)
+    {
+        do
+        {
+            if (!(data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+            {
+                auto file = DirectoryInfo(Path::Combine(this->FullName(), data.cFileName));
+                files.push_back(file.FullName());
+            }
+        }
+        while (FindNextFile(hFind, &data));
+        FindClose(hFind);
+    }
+#endif
+
     return files;
 }
 
