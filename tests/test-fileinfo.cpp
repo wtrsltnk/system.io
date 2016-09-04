@@ -2,6 +2,7 @@
 #include "../src/catch.hpp"
 
 #include "system.io.fileinfo.h"
+#include "system.io.path.h"
 
 using namespace System::IO;
 
@@ -30,15 +31,21 @@ TEST_CASE("FileInfo")
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
     }
 
-    file = FileInfo("c:\\temp\\..\\subdir\\.\\myfile.ext");
     SECTION("FullName() with .. and . in the path")
     {
+        file = FileInfo("c:\\temp\\..\\subdir\\.\\myfile.ext");
         REQUIRE(file.FullName() == "c:\\subdir\\myfile.ext");
     }
 
-    file = FileInfo("c:\\temp/subdir\\myfile.ext");
     SECTION("FullName() with alternative directory seperators")
     {
+        file = FileInfo("c:\\temp/subdir\\myfile.ext");
+        REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
+    }
+
+    SECTION("Example from readme")
+    {
+        file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"));
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
     }
 }
