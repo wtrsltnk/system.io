@@ -13,4 +13,4 @@ Here you find a few examples from tests cases which illustrate how these classes
 ```c++
 file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"))
 ```
-this will result in `c:\\temp\\subdir\\myfile.ext`
+this will result in `c:\temp\subdir\myfile.ext`
