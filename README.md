@@ -12,14 +12,14 @@ These sources contain the header files in the include directory and a set of tes
 Here you find a few examples from tests cases which illustrate how these classes work now:
 
 ### Example #1 Path & FileInfo
-```c++
+```
 auto file = FileInfo(Path::Combine("c:\\temp", "subdir\\myfile.ext"));
 cout << file.FullName();
 ```
 this will result in `c:\temp\subdir\myfile.ext`
 
 ### Example #2 FileInfo
-```c++
+```cpp
 auto file = FileInfo("c:\\temp\\..\\subdir\\.\\myfile.ext");
 cout << file.FullName();
 ```
