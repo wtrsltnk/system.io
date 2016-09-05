@@ -21,6 +21,7 @@ public:
     virtual std::string Name() = 0;
     virtual std::string FullName();
     virtual std::string Extension();
+    bool Exists();
 
 };
 
@@ -60,6 +61,25 @@ std::string FileSystemInfo::Extension()
         if (this->_fullPath[i] == '.') return this->_fullPath.substr(i);
     }
     return "";
+}
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+bool FileSystemInfo::Exists()
+{
+#ifdef _WIN32
+    WIN32_FIND_DATA FindFileData;
+    HANDLE handle = FindFirstFile(this->_fullPath.c_str(), &FindFileData);
+    if (handle != INVALID_HANDLE_VALUE)
+    {
+        FindClose(handle);
+        return true;
+    }
+#endif
+
+    return false;
 }
 
 #endif // _SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTED_

@@ -13,20 +13,29 @@ TEST_CASE("FileInfo")
         auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
     }
+
     SECTION("Extention()")
     {
         auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
         REQUIRE(file.Extension() == ".ext");
     }
+
     SECTION("Name()")
     {
         auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
         REQUIRE(file.Name() == "myfile.ext");
     }
+
     SECTION("FullName()")
     {
         auto file = FileInfo("c:\\temp\\subdir\\myfile.ext");
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
+    }
+
+    SECTION("Exists() not existing file")
+    {
+        auto file = DirectoryInfo("c:\\this-file-should-not-exist.not");
+        REQUIRE(file.Exists() == false);
     }
 }
 
