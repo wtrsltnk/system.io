@@ -18,10 +18,10 @@ protected:
 public:
     virtual ~FileSystemInfo();
 
-    virtual std::string Name() = 0;
-    virtual std::string FullName();
-    virtual std::string Extension();
-    bool Exists();
+    virtual std::string Name() const = 0;
+    virtual std::string FullName() const;
+    virtual std::string Extension() const;
+    bool Exists() const;
 
 };
 
@@ -46,12 +46,12 @@ FileSystemInfo::FileSystemInfo()
 FileSystemInfo::~FileSystemInfo()
 { }
 
-std::string FileSystemInfo::FullName()
+std::string FileSystemInfo::FullName() const
 {
     return this->_fullPath;
 }
 
-std::string FileSystemInfo::Extension()
+std::string FileSystemInfo::Extension() const
 {
     auto i = this->_fullPath.length();
     while (--i > 0)
@@ -67,7 +67,7 @@ std::string FileSystemInfo::Extension()
 #include <windows.h>
 #endif
 
-bool FileSystemInfo::Exists()
+bool FileSystemInfo::Exists() const
 {
 #ifdef _WIN32
     WIN32_FIND_DATA FindFileData;

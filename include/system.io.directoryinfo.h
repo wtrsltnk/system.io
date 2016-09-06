@@ -18,13 +18,13 @@ public:
     DirectoryInfo(const std::string& path);
     virtual ~DirectoryInfo();
 
-    DirectoryInfo Parent();
-    std::string Name();
+    DirectoryInfo Parent() const;
+    std::string Name() const;
 
-    std::vector<std::string> GetDirectories();
-    std::vector<std::string> GetDirectories(const std::string& searchPattern);
-    std::vector<std::string> GetFiles();
-    std::vector<std::string> GetFiles(const std::string& searchPattern);
+    std::vector<std::string> GetDirectories() const;
+    std::vector<std::string> GetDirectories(const std::string& searchPattern) const;
+    std::vector<std::string> GetFiles() const;
+    std::vector<std::string> GetFiles(const std::string& searchPattern) const;
 };
 
 } // namespace IO
@@ -60,17 +60,17 @@ void DirectoryInfo::Init(const std::string& path)
     this->_fullPath = Path::GetFullPath(path);
 }
 
-DirectoryInfo DirectoryInfo::Parent()
+DirectoryInfo DirectoryInfo::Parent() const
 {
     return DirectoryInfo(Path::GetDirectoryName(this->_fullPath));
 }
 
-std::string DirectoryInfo::Name()
+std::string DirectoryInfo::Name() const
 {
     return Path::GetFileName(this->_fullPath);
 }
 
-std::vector<std::string> DirectoryInfo::GetDirectories()
+std::vector<std::string> DirectoryInfo::GetDirectories() const
 {
     return this->GetDirectories("*");
 }
@@ -79,7 +79,7 @@ std::vector<std::string> DirectoryInfo::GetDirectories()
 #include <windows.h>
 #endif
 
-std::vector<std::string> DirectoryInfo::GetDirectories(const std::string& searchPattern)
+std::vector<std::string> DirectoryInfo::GetDirectories(const std::string& searchPattern) const
 {
     std::vector<std::string> files;
 
@@ -109,12 +109,12 @@ std::vector<std::string> DirectoryInfo::GetDirectories(const std::string& search
     return files;
 }
 
-std::vector<std::string> DirectoryInfo::GetFiles()
+std::vector<std::string> DirectoryInfo::GetFiles() const
 {
     return this->GetFiles("*");
 }
 
-std::vector<std::string> DirectoryInfo::GetFiles(const std::string& searchPattern)
+std::vector<std::string> DirectoryInfo::GetFiles(const std::string& searchPattern) const
 {
     std::vector<std::string> files;
 

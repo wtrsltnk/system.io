@@ -18,8 +18,8 @@ public:
     FileInfo(const std::string& path);
     virtual ~FileInfo();
 
-    std::string Name();
-    DirectoryInfo Directory();
+    std::string Name() const;
+    DirectoryInfo Directory() const;
 
 };
 
@@ -59,12 +59,12 @@ void FileInfo::Init(const std::string& path)
     this->_name = Path::GetFileName(this->_fullPath);
 }
 
-std::string FileInfo::Name()
+std::string FileInfo::Name() const
 {
     return this->_name;
 }
 
-DirectoryInfo FileInfo::Directory()
+DirectoryInfo FileInfo::Directory() const
 {
     return DirectoryInfo(Path::GetDirectoryName(this->_fullPath));
 }

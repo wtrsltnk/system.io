@@ -4,8 +4,6 @@
 #include "system.io.directoryinfo.h"
 #include "system.io.fileinfo.h"
 
-#include <iostream>
-
 using namespace System::IO;
 
 TEST_CASE("DirectoryInfo")
