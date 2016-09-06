@@ -92,6 +92,9 @@ std::vector<std::string> DirectoryInfo::GetDirectories(const std::string& search
     {
         do
         {
+            if (data.cFileName[0] == '.' && data.cFileName[1] == '\0') continue;
+            if (data.cFileName[0] == '.' && data.cFileName[1] == '.') continue;
+
             if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
             {
                 auto dir = DirectoryInfo(Path::Combine(this->FullName(), data.cFileName));

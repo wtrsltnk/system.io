@@ -4,6 +4,8 @@
 #include "system.io.directoryinfo.h"
 #include "system.io.fileinfo.h"
 
+#include <iostream>
+
 using namespace System::IO;
 
 TEST_CASE("DirectoryInfo")
@@ -55,7 +57,6 @@ TEST_CASE("DirectoryInfo")
         dir = DirectoryInfo("C:\\Windows");
         REQUIRE(dir.GetDirectories().size() > 0);
         REQUIRE(dir.FullName() == dir.GetDirectories()[0].substr(0, dir.FullName().size()));
-
         SECTION("Exists() folder")
         {
             auto subdir = DirectoryInfo(dir.GetDirectories()[0]);
