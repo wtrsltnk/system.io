@@ -21,7 +21,7 @@ public:
     virtual std::string Name() const = 0;
     virtual std::string FullName() const;
     virtual std::string Extension() const;
-    bool Exists() const;
+    virtual bool Exists() const;
 
 };
 

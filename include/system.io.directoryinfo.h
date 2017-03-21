@@ -20,6 +20,7 @@ public:
 
     DirectoryInfo Parent() const;
     std::string Name() const;
+    virtual bool Exists() const;
 
     std::vector<std::string> GetDirectories() const;
     std::vector<std::string> GetDirectories(const std::string& searchPattern) const;
@@ -68,6 +69,18 @@ DirectoryInfo DirectoryInfo::Parent() const
 std::string DirectoryInfo::Name() const
 {
     return Path::GetFileName(this->_fullPath);
+}
+
+bool DirectoryInfo::Exists() const
+{
+    DWORD attr = GetFileAttributesA(this->FullName().c_str());
+    if (attr == INVALID_FILE_ATTRIBUTES)
+        return false;  //something is wrong with your path!
+
+    if (attr & FILE_ATTRIBUTE_DIRECTORY)
+        return true;   // this is a directory!
+
+    return false;    // this is not a directory!
 }
 
 std::vector<std::string> DirectoryInfo::GetDirectories() const
