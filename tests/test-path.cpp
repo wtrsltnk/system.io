@@ -161,3 +161,23 @@ TEST_CASE("Path::IsPathRooted(const std::string& path)")
         REQUIRE(Path::IsPathRooted("mydir\\subdir\\") == false);
     }
 }
+
+// Test cases from .NET documentation @
+// https://msdn.microsoft.com/en-us/library/system.io.path.getpathroot(v=vs.110).aspx
+TEST_CASE("Path::GetPathRoot(const std::string& path)")
+{
+    SECTION("root character")
+    {
+        REQUIRE(Path::GetPathRoot("\\mydir\\") == "\\");
+    }
+
+    SECTION("no root")
+    {
+        REQUIRE(Path::GetPathRoot("myfile.ext") == "");
+    }
+
+    SECTION("drive")
+    {
+        REQUIRE(Path::GetPathRoot("C:\\mydir\\myfile.ext") == "C:\\");
+    }
+}

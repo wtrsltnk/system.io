@@ -23,6 +23,7 @@ public:
     static std::string GetFileName(const std::string& path);
     static std::string GetFileNameWithoutExtension(const std::string& path);
     static std::string GetFullPath(const std::string& path);
+    static std::string GetPathRoot(const std::string& path);
     static bool IsPathRooted(const std::string& path);
 };
 
@@ -197,6 +198,7 @@ std::string join(char delimiter, const std::vector<std::string>& v)
     }
     return ss.str();
 }
+
 std::string Path::GetFullPath(const std::string& path)
 {
     std::string _path = path;
@@ -238,6 +240,34 @@ std::string Path::GetFullPath(const std::string& path)
     }
 
     return join(Path::DirectorySeparatorChar, filtered);
+}
+
+
+std::string Path::GetPathRoot(const std::string& path)
+{
+    if (!Path::IsPathRooted(path))
+    {
+        return "";
+    }
+
+    if (path[0] == Path::DirectorySeparatorChar)
+    {
+        return std::string(1, Path::DirectorySeparatorChar);
+    }
+
+    std::vector<std::string> elems;
+    split(path, Path::DirectorySeparatorChar, elems);
+
+    if (elems.size() > 0)
+    {
+        auto root = elems[0];
+        if (root.size() == 2 && root[1] == Path::VolumeSeparatorChar)
+        {
+            return root + Path::DirectorySeparatorChar;
+        }
+    }
+
+    return "";
 }
 
 bool Path::IsPathRooted(const std::string& path)

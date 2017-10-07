@@ -19,6 +19,7 @@ public:
     virtual ~DirectoryInfo();
 
     DirectoryInfo Parent() const;
+    DirectoryInfo Root() const;
     std::string Name() const;
     virtual bool Exists() const;
     void Create() const;
@@ -27,6 +28,8 @@ public:
     std::vector<std::string> GetDirectories(const std::string& searchPattern) const;
     std::vector<std::string> GetFiles() const;
     std::vector<std::string> GetFiles(const std::string& searchPattern) const;
+
+    bool operator == (const DirectoryInfo& other) const;
 };
 
 } // namespace IO
@@ -56,6 +59,11 @@ DirectoryInfo::DirectoryInfo(const std::string& path)
 DirectoryInfo::~DirectoryInfo()
 { }
 
+bool DirectoryInfo::operator == (const DirectoryInfo& other) const
+{
+    return FullName() == other.FullName();
+}
+
 void DirectoryInfo::Init(const std::string& path)
 {
     this->_originalPath = path;
@@ -65,6 +73,11 @@ void DirectoryInfo::Init(const std::string& path)
 DirectoryInfo DirectoryInfo::Parent() const
 {
     return DirectoryInfo(Path::GetDirectoryName(this->_fullPath));
+}
+
+DirectoryInfo DirectoryInfo::Root() const
+{
+    return DirectoryInfo(Path::GetPathRoot(this->_fullPath));
 }
 
 std::string DirectoryInfo::Name() const
@@ -96,8 +109,18 @@ std::vector<std::string> DirectoryInfo::GetDirectories() const
 
 void DirectoryInfo::Create() const
 {
-    // todo
-    // mkdir(this->FullName().c_str());
+    // Don't make if this is the root
+    if (*this == Root())
+    {
+        return;
+    }
+
+    if (!Parent().Exists())
+    {
+        Parent().Create();
+    }
+
+    mkdir(this->FullName().c_str());
 }
 
 std::vector<std::string> DirectoryInfo::GetDirectories(const std::string& searchPattern) const
