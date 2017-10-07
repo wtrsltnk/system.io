@@ -21,6 +21,7 @@ public:
     DirectoryInfo Parent() const;
     std::string Name() const;
     virtual bool Exists() const;
+    void Create() const;
 
     std::vector<std::string> GetDirectories() const;
     std::vector<std::string> GetDirectories(const std::string& searchPattern) const;
@@ -90,7 +91,14 @@ std::vector<std::string> DirectoryInfo::GetDirectories() const
 
 #ifdef _WIN32
 #include <windows.h>
+#include <direct.h>
 #endif
+
+void DirectoryInfo::Create() const
+{
+    // todo
+    // mkdir(this->FullName().c_str());
+}
 
 std::vector<std::string> DirectoryInfo::GetDirectories(const std::string& searchPattern) const
 {
