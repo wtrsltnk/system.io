@@ -215,7 +215,7 @@ std::string Path::GetFullPath(const std::string& path)
 
     if (Path::IsPathRooted(_path))
     {
-        if (_path[1] != Path::VolumeSeparatorChar)
+        if (_path[1] != Path::VolumeSeparatorChar && _path[1] != Path::DirectorySeparatorChar)
         {
             _path = cwd.substr(0, 2) + _path;
         }

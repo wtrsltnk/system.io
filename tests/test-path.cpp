@@ -140,6 +140,11 @@ TEST_CASE("Path::GetFullPath(const std::string& path)")
     {
         REQUIRE(Path::GetFullPath("c:\\mydir") == "c:\\mydir");
     }
+
+    SECTION("with network location")
+    {
+        REQUIRE(Path::GetFullPath("\\\\mydir") == "\\\\mydir");
+    }
 }
 
 // Test cases from .NET documentation @

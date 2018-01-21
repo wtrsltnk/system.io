@@ -32,6 +32,12 @@ TEST_CASE("FileInfo")
         REQUIRE(file.FullName() == "c:\\temp\\subdir\\myfile.ext");
     }
 
+    SECTION("FullName() on network file")
+    {
+        auto file = FileInfo("\\\\server\\dir\\subdir\\myfile.ext");
+        REQUIRE(file.FullName() == "\\\\server\\dir\\subdir\\myfile.ext");
+    }
+
     SECTION("Exists() not existing file")
     {
         auto file = DirectoryInfo("c:\\this-file-should-not-exist.not");
