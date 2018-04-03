@@ -15,6 +15,12 @@ public:
     // Creates all directories and subdirectories in the specified path unless they already exist.
     static bool CreateDirectoryFromPath(std::string const &path);
 
+    // Deletes an empty directory from a specified path.
+    static void Delete(std::string const &path);
+
+    // Deletes the specified directory and, if indicated, any subdirectories and files in the directory.
+    static void Delete(std::string const &path, bool recursive);
+
     // Determines whether the given path refers to an existing directory on disk.
     static bool Exists(std::string const &path);
 
@@ -47,6 +53,8 @@ public:
 
 using namespace System::IO;
 
+#include "system.io.file.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #include <direct.h>
@@ -57,6 +65,35 @@ bool Directory::CreateDirectoryFromPath(std::string const &path)
     mkdir(path.c_str());
 
     return true;
+}
+
+// Deletes an empty directory from a specified path.
+void Directory::Delete(std::string const &path)
+{
+#ifdef _WIN32
+    RemoveDirectory(path.c_str());
+#endif // _WIN32
+}
+
+// Deletes the specified directory and, if indicated, any subdirectories and files in the directory.
+void Directory::Delete(std::string const &path, bool recursive)
+{
+#ifdef _WIN32
+    if (recursive)
+    {
+        auto files = Directory::GetFiles(path);
+        for (auto file : files)
+        {
+            File::Delete(file);
+        }
+        auto subDirectories = Directory::GetDirectories(path);
+        for (auto subDirectory : subDirectories)
+        {
+            Directory::Delete(subDirectory);
+        }
+    }
+    RemoveDirectory(path.c_str());
+#endif // _WIN32
 }
 
 bool Directory::Exists(std::string const &path)
