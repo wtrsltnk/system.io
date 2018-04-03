@@ -1,7 +1,9 @@
 # System.IO
 Partial c++ header only implementation of .NET System.IO classes. Goal of this project is to have similar functionality from .NET System.IO available in c++. Currently (partial)implemented are:
 
+* Directory
 * DirectoryInfo
+* File
 * FileInfo
 * FileSystemInfo
 * Path
