@@ -10,7 +10,9 @@ set(TESTFILES
     )
 
 set(HEADERS
+    include/system.io.directory.h
     include/system.io.directoryinfo.h
+    include/system.io.file.h
     include/system.io.fileinfo.h
     include/system.io.filesysteminfo.h
     include/system.io.path.h

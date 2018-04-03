@@ -63,23 +63,11 @@ std::string FileSystemInfo::Extension() const
     return "";
 }
 
-#ifdef _WIN32
-#include <windows.h>
-#endif
+#include "system.io.file.h"
 
 bool FileSystemInfo::Exists() const
 {
-#ifdef _WIN32
-    WIN32_FIND_DATA FindFileData;
-    HANDLE handle = FindFirstFile(this->_fullPath.c_str(), &FindFileData);
-    if (handle != INVALID_HANDLE_VALUE)
-    {
-        FindClose(handle);
-        return true;
-    }
-#endif
-
-    return false;
+    return File::Exists(_fullPath);
 }
 
 #endif // _SYSTEM_IO_FILESYSTEMINFO_IMPLEMENTED_

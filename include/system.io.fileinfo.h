@@ -13,9 +13,9 @@ namespace IO
 class FileInfo : public FileSystemInfo
 {
     std::string _name;
-    void Init(const std::string& path);
+    void Init(std::string const &path);
 public:
-    FileInfo(const std::string& path);
+    FileInfo(std::string const &path);
     virtual ~FileInfo();
 
     std::string Name() const;
@@ -44,7 +44,7 @@ public:
 
 using namespace System::IO;
 
-FileInfo::FileInfo(const std::string& path)
+FileInfo::FileInfo(std::string const &path)
 {
     this->Init(path);
 }
@@ -52,7 +52,7 @@ FileInfo::FileInfo(const std::string& path)
 FileInfo::~FileInfo()
 { }
 
-void FileInfo::Init(const std::string& path)
+void FileInfo::Init(std::string const &path)
 {
     this->_originalPath = path;
     this->_fullPath = Path::GetFullPath(path);

@@ -17,14 +17,14 @@ public:
     static char InvalidPathChars[];
     static char VolumeSeparatorChar;
 
-    static std::string Combine(const std::string& path1, const std::string& path2);
-    static std::string GetDirectoryName(const std::string& path);
-    static std::string GetExtension(const std::string& path);
-    static std::string GetFileName(const std::string& path);
-    static std::string GetFileNameWithoutExtension(const std::string& path);
-    static std::string GetFullPath(const std::string& path);
-    static std::string GetPathRoot(const std::string& path);
-    static bool IsPathRooted(const std::string& path);
+    static std::string Combine(std::string const &path1, std::string const &path2);
+    static std::string GetDirectoryName(std::string const &path);
+    static std::string GetExtension(std::string const &path);
+    static std::string GetFileName(std::string const &path);
+    static std::string GetFileNameWithoutExtension(std::string const &path);
+    static std::string GetFullPath(std::string const &path);
+    static std::string GetPathRoot(std::string const &path);
+    static bool IsPathRooted(std::string const &path);
 };
 
 } // namespace IO
@@ -37,6 +37,7 @@ public:
 #ifndef _SYSTEM_IO_PATH_IMPLEMENTED_
 #define _SYSTEM_IO_PATH_IMPLEMENTED_
 
+#include "system.io.directory.h"
 #include <sstream>
 #include <algorithm>
 
@@ -88,7 +89,7 @@ char Path::InvalidPathChars[] = { '\"', '<', '>', '|', '\0',
 char Path::VolumeSeparatorChar = ':';
 #endif
 
-std::string Path::Combine(const std::string& path1, const std::string& path2)
+std::string Path::Combine(std::string const &path1, std::string const &path2)
 {
     //  If path2 includes a root, path2 is returned
     if (Path::IsPathRooted(path2)) return path2;
@@ -106,7 +107,7 @@ std::string Path::Combine(const std::string& path1, const std::string& path2)
     return _path1 + _path2;
 }
 
-std::string Path::GetDirectoryName(const std::string& path)
+std::string Path::GetDirectoryName(std::string const &path)
 {
     if (path[path.length() - 2] == Path::VolumeSeparatorChar) return "";
 
@@ -126,7 +127,7 @@ std::string Path::GetDirectoryName(const std::string& path)
     return path;
 }
 
-std::string Path::GetExtension(const std::string& path)
+std::string Path::GetExtension(std::string const &path)
 {
     auto filename = Path::GetFileName(path);
     auto lastSeperator = filename.find_last_of(".");
@@ -139,7 +140,7 @@ std::string Path::GetExtension(const std::string& path)
     return "";
 }
 
-std::string Path::GetFileName(const std::string& path)
+std::string Path::GetFileName(std::string const &path)
 {
     std::string seperators;
     seperators += Path::DirectorySeparatorChar;
@@ -156,7 +157,7 @@ std::string Path::GetFileName(const std::string& path)
     return path;
 }
 
-std::string Path::GetFileNameWithoutExtension(const std::string& path)
+std::string Path::GetFileNameWithoutExtension(std::string const &path)
 {
     auto filename = Path::GetFileName(path);
     auto lastSeperator = filename.find_last_of(".");
@@ -168,15 +169,6 @@ std::string Path::GetFileNameWithoutExtension(const std::string& path)
 
     return "";
 }
-
-#include <stdio.h>  /* defines FILENAME_MAX */
-#ifdef _WIN32
-    #include <direct.h>
-    #define GetCurrentDir _getcwd
-#else
-    #include <unistd.h>
-    #define GetCurrentDir getcwd
-#endif
 
 void split(const std::string &s, char delim, std::vector<std::string> &elems) {
     std::stringstream ss;
@@ -199,19 +191,14 @@ std::string join(char delimiter, const std::vector<std::string>& v)
     return ss.str();
 }
 
-std::string Path::GetFullPath(const std::string& path)
+std::string Path::GetFullPath(std::string const &path)
 {
     std::string _path = path;
     if (_path[_path.length() - 1] == Path::DirectorySeparatorChar
             || _path[_path.length() - 1] == Path::AltDirectorySeparatorChar)
         _path = _path.substr(0, _path.length() - 1);
 
-    char cCurrentPath[FILENAME_MAX];
-
-    if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath))) return _path;
-
-    cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
-    std::string cwd = cCurrentPath;
+    std::string cwd = Directory::GetCurrentWorkingDirectory();
 
     if (Path::IsPathRooted(_path))
     {
@@ -243,7 +230,7 @@ std::string Path::GetFullPath(const std::string& path)
 }
 
 
-std::string Path::GetPathRoot(const std::string& path)
+std::string Path::GetPathRoot(std::string const &path)
 {
     if (!Path::IsPathRooted(path))
     {
@@ -270,7 +257,7 @@ std::string Path::GetPathRoot(const std::string& path)
     return "";
 }
 
-bool Path::IsPathRooted(const std::string& path)
+bool Path::IsPathRooted(std::string const &path)
 {
     auto length = path.length();
 
