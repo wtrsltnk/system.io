@@ -62,7 +62,7 @@ bool Directory::CreateDirectoryFromPath(std::string const &path)
 bool Directory::Exists(std::string const &path)
 {
 #ifdef _WIN32
-    DWORD attr = GetFileAttributesA(path.c_str());
+    DWORD attr = GetFileAttributes(path.c_str());
     if (attr == INVALID_FILE_ATTRIBUTES)
     {
         return false;  //something is wrong with your path!
