@@ -14,8 +14,9 @@ add_library(system.io
     src/Path.cpp
     )
 
-target_include_directories(system.io
-    PUBLIC include
+target_include_directories(system.io PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
     )
 
 add_executable(system.io.tests
