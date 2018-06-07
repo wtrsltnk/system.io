@@ -1,7 +1,7 @@
 #ifndef _SYSTEM_IO_DIRECTORYINFO_H_
 #define _SYSTEM_IO_DIRECTORYINFO_H_
 
-#include "system.io.filesysteminfo.h"
+#include "FileSystemInfo.h"
 #include <string>
 #include <vector>
 

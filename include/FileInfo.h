@@ -1,8 +1,8 @@
 #ifndef _SYSTEM_IO_FILEINFO_H_
 #define _SYSTEM_IO_FILEINFO_H_
 
-#include "system.io.filesysteminfo.h"
-#include "system.io.directoryinfo.h"
+#include "FileSystemInfo.h"
+#include "DirectoryInfo.h"
 #include <string>
 
 namespace System

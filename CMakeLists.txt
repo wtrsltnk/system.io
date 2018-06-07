@@ -19,6 +19,10 @@ target_include_directories(system.io PUBLIC
     $<INSTALL_INTERFACE:include>
     )
 
+target_compile_features(system.io
+    PRIVATE cxx_nullptr
+    )
+
 add_executable(system.io.tests
     tests/test-directoryinfo.cpp
     tests/test-fileinfo.cpp
