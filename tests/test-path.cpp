@@ -117,7 +117,7 @@ TEST_CASE("Path::GetFileNameWithoutExtension(const std::string& path)")
 // https://msdn.microsoft.com/en-us/library/system.io.path.getfullpath(v=vs.110).aspx
 TEST_CASE("Path::GetFullPath(const std::string& path)")
 {
-    auto cwd = std::string(WORKING_DIR);
+    auto cwd = std::string(TEST_WORKING_DIRECTORY);
     std::replace(cwd.begin(), cwd.end(), Path::AltDirectorySeparatorChar, Path::DirectorySeparatorChar);
     auto root = cwd.substr(0, 3);
 
