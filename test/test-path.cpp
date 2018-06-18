@@ -1,7 +1,7 @@
 
 #include "../src/catch.hpp"
 
-#include "system.io.path.h"
+#include "Path.h"
 
 #include <string>
 

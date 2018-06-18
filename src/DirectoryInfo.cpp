@@ -1,7 +1,7 @@
-#include <DirectoryInfo.h>
-#include <Directory.h>
-#include <Path.h>
-#include <FileSystemInfo.h>
+#include <system.io/DirectoryInfo.h>
+#include <system.io/Directory.h>
+#include <system.io/Path.h>
+#include <system.io/FileSystemInfo.h>
 
 using namespace System::IO;
 

@@ -1,8 +1,8 @@
 #include "../src/catch.hpp"
 
-#include "system.io.directory.h"
-#include "system.io.directoryinfo.h"
-#include "system.io.path.h"
+#include <Directory.h>
+#include <DirectoryInfo.h>
+#include <Path.h>
 
 using namespace System::IO;
 
