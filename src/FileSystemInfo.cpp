@@ -1,6 +1,6 @@
-#include <system.io/FileSystemInfo.h>
-#include <system.io/Path.h>
-#include <system.io/File.h>
+#include <system.io/system.io.filesysteminfo.h>
+#include <system.io/system.io.path.h>
+#include <system.io/system.io.file.h>
 
 using namespace System::IO;
 

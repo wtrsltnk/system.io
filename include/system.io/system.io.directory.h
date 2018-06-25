@@ -4,10 +4,8 @@
 #include <string>
 #include <vector>
 
-namespace System
-{
-namespace IO
-{
+namespace System {
+namespace IO {
 
 class Directory
 {
@@ -38,7 +36,6 @@ public:
 
     // Returns the names of files (including their paths) that match the specified search pattern in the specified directory.
     static std::vector<std::string> GetFiles(std::string const &path, std::string const &searchPattern);
-
 };
 
 } // namespace IO

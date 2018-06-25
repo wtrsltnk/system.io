@@ -4,10 +4,8 @@
 #include <string>
 #include <vector>
 
-namespace System
-{
-namespace IO
-{
+namespace System {
+namespace IO {
 
 class Path
 {

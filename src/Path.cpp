@@ -1,5 +1,5 @@
-#include <system.io/Path.h>
-#include <system.io/Directory.h>
+#include <system.io/system.io.path.h>
+#include <system.io/system.io.directory.h>
 #include <sstream>
 #include <algorithm>
 

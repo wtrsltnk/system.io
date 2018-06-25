@@ -33,12 +33,12 @@ install(
 
 install(
     FILES
-        ${system.io_SOURCE_DIR}/include/system.io/Directory.h
-        ${system.io_SOURCE_DIR}/include/system.io/DirectoryInfo.h
-        ${system.io_SOURCE_DIR}/include/system.io/File.h
-        ${system.io_SOURCE_DIR}/include/system.io/FileInfo.h
-        ${system.io_SOURCE_DIR}/include/system.io/FileSystemInfo.h
-        ${system.io_SOURCE_DIR}/include/system.io/Path.h
+        ${system.io_SOURCE_DIR}/include/system.io/system.io.directory.h
+        ${system.io_SOURCE_DIR}/include/system.io/system.io.directoryinfo.h
+        ${system.io_SOURCE_DIR}/include/system.io/system.io.file.h
+        ${system.io_SOURCE_DIR}/include/system.io/system.io.fileinfo.h
+        ${system.io_SOURCE_DIR}/include/system.io/system.io.filesysteminfo.h
+        ${system.io_SOURCE_DIR}/include/system.io/system.io.path.h
     DESTINATION
         "include/system.io"
     )

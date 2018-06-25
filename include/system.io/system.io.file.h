@@ -1,13 +1,11 @@
-#ifndef SYSTEM_IO_FILE_H
-#define SYSTEM_IO_FILE_H
+#ifndef _SYSTEM_IO_FILE_H_
+#define _SYSTEM_IO_FILE_H_
 
 #include <string>
 #include <vector>
 
-namespace System
-{
-namespace IO
-{
+namespace System {
+namespace IO {
 
 class File
 {
@@ -19,10 +17,10 @@ public:
     static void AppendAllText(std::string const &path, std::string const &text);
 
     // Copies an existing file to a new file. Overwriting a file of the same name is not allowed.
-    static void Copy(std::string const &sourceFileName, std::string const &destFileName)	;
+    static void Copy(std::string const &sourceFileName, std::string const &destFileName);
 
     // Copies an existing file to a new file. Overwriting a file of the same name is allowed.
-    static void Copy(std::string const &sourceFileName, std::string const &destFileName, bool overwrite)	;
+    static void Copy(std::string const &sourceFileName, std::string const &destFileName, bool overwrite);
 
     // Deletes the specified file.
     static void Delete(std::string const &path);
@@ -50,10 +48,9 @@ public:
 
     // Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
     static void WriteAllText(std::string const &path, std::string const &text);
-
 };
 
 } // namespace IO
 } // namespace System
 
-#endif // SYSTEM_IO_FILE_H
+#endif // _SYSTEM_IO_FILE_H_

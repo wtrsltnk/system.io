@@ -1,7 +1,7 @@
-#include <system.io/FileInfo.h>
-#include <system.io/Path.h>
-#include <system.io/FileSystemInfo.h>
-#include <system.io/DirectoryInfo.h>
+#include <system.io/system.io.directoryinfo.h>
+#include <system.io/system.io.fileinfo.h>
+#include <system.io/system.io.filesysteminfo.h>
+#include <system.io/system.io.path.h>
 
 using namespace System::IO;
 
@@ -11,7 +11,7 @@ FileInfo::FileInfo(std::string const &path)
 }
 
 FileInfo::~FileInfo()
-{ }
+{}
 
 void FileInfo::Init(std::string const &path)
 {

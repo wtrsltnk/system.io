@@ -3,10 +3,8 @@
 
 #include <string>
 
-namespace System
-{
-namespace IO
-{
+namespace System {
+namespace IO {
 
 class FileSystemInfo
 {
@@ -15,6 +13,7 @@ protected:
     std::string _fullPath;
 
     FileSystemInfo();
+
 public:
     virtual ~FileSystemInfo();
 
@@ -22,7 +21,6 @@ public:
     virtual std::string FullName() const;
     virtual std::string Extension() const;
     virtual bool Exists() const;
-
 };
 
 } // namespace IO

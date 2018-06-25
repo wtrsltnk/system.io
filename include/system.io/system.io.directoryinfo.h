@@ -1,19 +1,18 @@
 #ifndef _SYSTEM_IO_DIRECTORYINFO_H_
 #define _SYSTEM_IO_DIRECTORYINFO_H_
 
-#include "FileSystemInfo.h"
+#include "system.io.filesysteminfo.h"
 #include <string>
 #include <vector>
 
-namespace System
-{
-namespace IO
-{
+namespace System {
+namespace IO {
 
 class DirectoryInfo : public FileSystemInfo
 {
     std::string _name;
     void Init(std::string const &path);
+
 public:
     DirectoryInfo(std::string const &path);
     virtual ~DirectoryInfo();
@@ -29,7 +28,7 @@ public:
     std::vector<std::string> GetFiles() const;
     std::vector<std::string> GetFiles(std::string const &searchPattern) const;
 
-    bool operator == (const DirectoryInfo& other) const;
+    bool operator==(const DirectoryInfo &other) const;
 };
 
 } // namespace IO

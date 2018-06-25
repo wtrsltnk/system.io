@@ -1,6 +1,6 @@
-#include <system.io/Directory.h>
-#include <system.io/File.h>
-#include <system.io/Path.h>
+#include <system.io/system.io.directory.h>
+#include <system.io/system.io.file.h>
+#include <system.io/system.io.path.h>
 
 #ifdef _WIN32
 #include <windows.h>
